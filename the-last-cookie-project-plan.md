@@ -1,6 +1,6 @@
 # <ins>The Last Cookie</ins>
 
-##by: Jo Baker,  Anna R, Funmi Falegan, Karan Kaur & Tish Selakanabarajah
+##by: Jo Baker,  Anna Robertson, Funmi Falegan, Karan Kaur & Ahartisha Selakanabarajah
 
 
 ###**1. What are we building?**
