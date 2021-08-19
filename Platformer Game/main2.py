@@ -5,7 +5,9 @@
 import arcade
 from pyglet import window
 
+# Class that runs the entire game
 class Platformer(arcade.Window):
+    # Initialise game object
     def __init__(self):
         pass
     
@@ -13,14 +15,17 @@ class Platformer(arcade.Window):
     def setup(self):
         pass
     
+    # Process key presses
     def on_key_press(self, symbol: int, modifiers: int):
         # return super().on_key_press(symbol, modifiers)
         pass
     
+    # Process key releases
     def on_key_release(self, symbol: int, modifiers: int):
         # return super().on_key_release(symbol, modifiers)
         pass
     
+    # Update the state of the game and all the objects in it
     def on_update(self, delta_time: float):
         # return super().on_update(delta_time)
         pass
