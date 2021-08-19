@@ -1,24 +1,40 @@
-import pygame, sys
+# El Do-Cookie-Rado - Platform Game
+# A part of 'The Last Cookie' gamw
+# Created by Ahartisha Selakanabarajah
 
-clock = pygame.time.Clock()
+import arcade
+from pyglet import window
 
-from pygame.locals import * 
-
-pygame.init() # initiates pygame
-
-pygame.display.set_caption("The Last Cookie - Platform Game")
-
-WINDOW_SIZE = (400, 400)
-
-screen = pygame.display.set_mode(WINDOW_SIZE, 0, 32) # initiates the window
-
-# game loop
-while True:
+# Class that runs the entire game
+class Platformer(arcade.Window):
+    # Initialise game object
+    def __init__(self):
+        pass
     
-    for event in pygame.event.get():
-        if event.type == QUIT:
-            pygame.quit()
-            sys.exit()
-            
-    pygame.display.update()
-    clock.tick(60)
+    # Set Up game
+    def setup(self):
+        pass
+    
+    # Process key presses
+    def on_key_press(self, symbol: int, modifiers: int):
+        # return super().on_key_press(symbol, modifiers)
+        pass
+    
+    # Process key releases
+    def on_key_release(self, symbol: int, modifiers: int):
+        # return super().on_key_release(symbol, modifiers)
+        pass
+    
+    # Update the state of the game and all the objects in it
+    def on_update(self, delta_time: float):
+        # return super().on_update(delta_time)
+        pass
+    
+    def on_draw(self):
+        # return super().on_draw()
+        pass
+
+if __name__ == "__main__":
+    window = Platformer()
+    window.setup()
+    window.run()
