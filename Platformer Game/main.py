@@ -18,7 +18,23 @@ ASSETS_PATH = pathlib.Path(__file__).resolve().parent.parent / "assets"
 class Platformer(arcade.Window):
     # Initialise game object
     def __init__(self):
-        pass
+        super().__init__(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE)
+        
+        # The sprites in the game
+        self.coins = None
+        self.background = None
+        self.walls = None
+        self.ladders = None
+        self.goals = None
+        
+        # Player Sprite
+        self.player = None
+        
+        # Score
+        self.score = 0
+        
+        # Level
+        self.level = 1
     
     # Set Up game
     def setup(self):
