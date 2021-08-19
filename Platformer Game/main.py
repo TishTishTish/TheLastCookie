@@ -3,7 +3,16 @@
 # Created by Ahartisha Selakanabarajah
 
 import arcade
-from pyglet import window
+import pathlib
+
+# Constants
+# Screen Dimensions
+SCREEN_WIDTH = 640
+SCREEN_HEIGHT = 480
+SCREEN_TITLE = "El Do-Cookie-Rado | The Last Cookie"
+
+# Path to the assets folder
+ASSETS_PATH = pathlib.Path(__file__).resolve().parent.parent / "assets"
 
 # Class that runs the entire game
 class Platformer(arcade.Window):
