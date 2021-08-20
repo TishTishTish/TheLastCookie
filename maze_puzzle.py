@@ -1,204 +1,361 @@
 import turtle
+import time
 
-turtle.title("Detective maze")
-
-# functions that mark the walls of the maze through lists.
-
+window = turtle.Screen()
+window.screensize(800, 600)
 pixels = list()
 
 
-def make_horizontal_line(hl, x, y):
-    line_horizontal = turtle.Turtle()
-    line_horizontal.speed(0)
-    line_horizontal.hideturtle()
-    line_horizontal.up()
-    line_horizontal.setposition(x, y)
-    for n in hl:
-        if n == 1:
-            for i in range(2):
-                line_horizontal.forward(21 / 4)
-                pixel = line_horizontal.clone()
-                pixel.showturtle()
-                pixel.shape("square")
-                pixel.shapesize(1 / 20, 10.5 / 20)
-                pixels.append(pixel)
-                line_horizontal.forward(21 / 4)
+class Game:
 
-        if n == 0:
-            line_horizontal.forward(21)
+    # maze creation
+    hl = [[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+          [0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 0, ],
+          [0, 1, 1, 1, 0, 1, 1, 0, 0, 1, 1, 1, 1, 0, ],
+          [0, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 0, 0, 0, ],
+          [0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 1, 1, 0, 0, ],
+          [0, 0, 0, 0, 0, 1, 1, 0, 0, 1, 0, 1, 1, 0, ],
+          [0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, ],
+          [1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, ],
+          [0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, ],
+          [0, 1, 0, 1, 0, 1, 1, 0, 1, 0, 0, 0, 1, 0, ],
+          [0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 0, 0, 0, ],
+          [1, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, ],
+          [0, 0, 0, 0, 0, 1, 1, 0, 1, 1, 0, 0, 1, 1, 1],
+          [0, 1, 1, 0, 1, 0, 1, 1, 0, 1, 1, 1, 1, 0, 0],
+          [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]]
 
+    vl = [[1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, ],
+          [0, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 0, ],
+          [0, 0, 0, 1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 0, ],
+          [0, 0, 1, 0, 1, 1, 1, 1, 0, 0, 0, 1, 1, 0, ],
+          [1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 1, 0, ],
+          [0, 1, 1, 0, 0, 1, 1, 1, 1, 0, 0, 1, 0, 1, ],
+          [0, 0, 0, 1, 0, 0, 1, 1, 0, 0, 1, 0, 0, 0, ],
+          [1, 0, 1, 0, 0, 1, 0, 0, 1, 1, 0, 1, 1, 0, ],
+          [0, 0, 1, 0, 1, 1, 0, 1, 0, 0, 1, 1, 1, 0, ],
+          [0, 1, 0, 1, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, ],
+          [0, 0, 0, 0, 1, 0, 1, 1, 1, 0, 0, 0, 0, 0, ],
+          [1, 0, 0, 0, 0, 1, 1, 0, 1, 1, 1, 1, 1, 0, ],
+          [0, 0, 1, 1, 0, 0, 1, 1, 0, 1, 1, 1, 0, 0, ],
+          [0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 0, ],
+          [0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 0, ],
+          [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1]]
 
-def create_horizontal_lines(hl, x, y):
-    step_y = y
-    for n in hl:
-        make_horizontal_line(n, x, step_y)
-        step_y -= 21
+    def __init__(self):
+        self.game_state = "splash"
+        self.start_screen()
+        self.cookie_crumbs = False
+        self.found_fountain = False
+        self.no_win = False
 
+    def init_game_state(self):
+        turtle.hideturtle()
+        turtle.title("Maryland Maze")
+        turtle.bgcolor("Beige")
+        self.detective_player = turtle.Turtle()
+        turtle.tracer(0)
+        self.make_maze(self.hl, self.vl, -320, 300)
+        self.start()
+        self.winning_pos = (-325, 199)
+        self.crumb_placement()
+        self.fountain_placement()
+        turtle.update()
+        turtle.tracer(1)
 
-def make_vertical_line(vl, x, y):
-    line_v = turtle.Turtle()
-    line_v.hideturtle()
-    line_v.speed(0)
-    line_v.up()
-    line_v.setposition(x, y)
-    line_v.right(90)
-    for n in vl:
-        if n == 1:
-            for i in range(2):
-                line_v.forward(21 / 4)
-                pixel = line_v.clone()
-                pixel.showturtle()
-                pixel.shape("square")
-                pixel.shapesize(1 / 20, 10.5 / 20)
-                pixels.append(pixel)
-                line_v.forward(21 / 4)
-        if n == 0:
-            line_v.forward(21)
+    def make_horizontal_line(self, hl, x, y):
+        if self.game_state == "game":
+            line_horizontal = turtle.Turtle()
+            line_horizontal.speed(0)
+            line_horizontal.hideturtle()
+            line_horizontal.up()
+            line_horizontal.setposition(x, y)
+            for n in hl:
+                if n == 1:
+                    for i in range(4):
+                        line_horizontal.forward(42 / 8)
+                        pixel = line_horizontal.clone()
+                        pixel.showturtle()
+                        pixel.shape("square")
+                        pixel.color("DarkGreen")
+                        pixel.shapesize(2 / 40, 21 / 40)
+                        pixels.append(pixel)
+                        line_horizontal.forward(42 / 8)
 
+                if n == 0:
+                    line_horizontal.forward(42)
 
-def create_vertical_lines(vl, x, y):
-    step_right = x
-    for n in vl:
-        make_vertical_line(n, step_right, y)
-        step_right += 21
+    def create_horizontal_lines(self, hl, x, y):
+        if self.game_state == "game":
+            step_y = y
+            for n in hl:
+                self.make_horizontal_line(n, x, step_y)
+                step_y -= 42
 
+    def make_vertical_line(self, vl, x, y):
+        if self.game_state == "game":
+            line_v = turtle.Turtle()
+            line_v.hideturtle()
+            line_v.speed(0)
+            line_v.up()
+            line_v.setposition(x, y)
+            line_v.right(90)
+            for n in vl:
+                if n == 1:
+                    for i in range(4):
+                        line_v.forward(42 / 8)
+                        pixel = line_v.clone()
+                        pixel.showturtle()
+                        pixel.shape("square")
+                        pixel.color("DarkGreen")  # pick a colour appropriate for rest of team's colour schemes
+                        pixel.shapesize(2 / 40, 21 / 40)
+                        pixels.append(pixel)
+                        line_v.forward(42 / 8)
+                if n == 0:
+                    line_v.forward(42)
 
-# this function marks the entire maze by attaching all the others above
+    def create_vertical_lines(self, vl, x, y):
+        if self.game_state == "game":
+            step_right = x
+            for n in vl:
+                self.make_vertical_line(n, step_right, y)
+                step_right += 42
 
-def mark_maze(hl, vl, x, y):
-    create_horizontal_lines(hl, x, y)
-    create_vertical_lines(vl, x, y)
+    def start_screen(self):
+        if self.game_state == "splash":
+            window.bgpic("maze-figures/start_image.gif")
+            window.listen()
+            window.onkeypress(self.state_of_game, "f")
 
+    def state_of_game(self):
+        self.game_state = "game"
+        window.bgpic("nopic")
+        self.init_game_state()
 
-# create a window for the game
+    def make_maze(self, hl, vl, x, y):
+        if self.game_state == "game":
+            self.create_horizontal_lines(hl, x, y)
+            self.create_vertical_lines(vl, x, y)
 
-window = turtle.Screen()
-window.screensize(600, 400)
+    def start(self):
+        if self.game_state == "game":
+            # starting_pos = (335, -181)
+            starting_pos = (-258, 196)  # starting position for testing win
+            turtle.hideturtle()
+            window.register_shape('maze-figures/pikachu_left.gif')
+            self.detective_player.shape('maze-figures/pikachu_left.gif')
+            self.detective_player.speed(3)
+            self.detective_player.up()
+            self.detective_player.setposition(starting_pos)
+            self.detective_player.setheading(180)
+            self.detective_player.color("DarkMagenta")
+            self.detective_player.up()
+            self.detective_player.down()
 
-# maze creation
+    def crumb_placement(self):
+        if self.game_state == "game":
+            # self.crumbs_position = (288, -223)
+            self.crumbs_position = (-218, 195)  # crumb position for testing win
+            self.cookie_crumbs_image = ('maze-figures/cookie_crumbs.gif')
+            window.register_shape(self.cookie_crumbs_image)
+            self.crumbs = turtle.Turtle(shape=self.cookie_crumbs_image)
+            self.crumbs.penup()
+            self.crumbs.setposition(self.crumbs_position)
 
-hl = [[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-      [0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 0, ],
-      [0, 1, 1, 1, 0, 1, 1, 0, 0, 1, 1, 1, 1, 0, ],
-      [0, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 0, 0, 0, ],
-      [0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 1, 1, 0, 0, ],
-      [0, 0, 0, 0, 0, 1, 1, 0, 0, 1, 0, 1, 1, 0, ],
-      [0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, ],
-      [1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, ],
-      [0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, ],
-      [0, 1, 0, 1, 0, 1, 1, 0, 1, 0, 0, 0, 1, 0, ],
-      [0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 0, 0, 0, ],
-      [1, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, ],
-      [0, 0, 0, 0, 0, 1, 1, 0, 1, 1, 0, 0, 1, 1, ],
-      [0, 1, 1, 0, 1, 0, 1, 1, 0, 1, 1, 1, 1, 0, ],
-      [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]]
+    def fountain_placement(self):
+        if self.game_state == "game":
+            self.fountain_position = (-5, -14)
+            self.fountain_image = ("maze-figures/fountain.gif")
+            window.register_shape(self.fountain_image)
+            self.fountain = turtle.Turtle(shape=self.fountain_image)
+            self.fountain.penup()
+            self.fountain.setposition(self.fountain_position)
 
+    def collision(self):
+        if self.game_state == "game":
+            for i in range(25):
+                self.detective_player.forward(1)
+                if any(pixel.distance(self.detective_player) < 7 for pixel in pixels):
+                    break
 
-vl = [[1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, ],
-      [0, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 0, ],
-      [0, 0, 0, 1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 0, ],
-      [0, 0, 1, 0, 1, 1, 1, 1, 0, 0, 0, 1, 1, 0, ],
-      [1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 1, 0, ],
-      [0, 1, 1, 0, 0, 1, 1, 1, 1, 0, 0, 1, 0, 1, ],
-      [0, 0, 0, 1, 0, 0, 1, 1, 0, 0, 1, 0, 0, 0, ],
-      [1, 0, 1, 0, 0, 1, 0, 0, 1, 1, 0, 1, 1, 0, ],
-      [0, 0, 1, 0, 1, 1, 0, 1, 0, 0, 1, 1, 1, 0, ],
-      [0, 1, 0, 1, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, ],
-      [0, 0, 0, 0, 1, 0, 1, 1, 1, 0, 0, 0, 0, 0, ],
-      [1, 0, 0, 0, 0, 1, 1, 0, 1, 1, 1, 1, 1, 0, ],
-      [0, 0, 1, 1, 0, 0, 1, 1, 0, 1, 1, 1, 0, 0, ],
-      [0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 0, ],
-      [0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 0, ],
-      [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1]]
+    def find_crumbs(self):
+        if self.game_state == "game":
+            if self.cookie_crumbs is False and self.is_detective_near_crumbs():
+                self.cookie_crumbs = True
+                self.crumbs.hideturtle()
+                message_position = (0, -340)
+                crumbs_message = ('maze-figures/crumbs_message.gif')
+                window.register_shape(crumbs_message)
+                message = turtle.Turtle(shape=crumbs_message)
+                message.penup()
+                message.setposition(message_position)
+                time.sleep(3)
+                message.hideturtle()
 
-# generate the maze
+    def is_detective_near_crumbs(self):
+        return self.detective_player.distance(self.crumbs_position) <= 20
 
-turtle.tracer(0)
-mark_maze(hl, vl, -162, 182)
-turtle.update()
-turtle.tracer(1)
+    def find_fountain(self):
+        if self.game_state == "game":
+            if self.found_fountain is False and self.is_detective_near_fountain():
+                self.found_fountain = True
+                self.speed = self.detective_player.speed(0)
+                message_position = (0, -340)
+                fountain_message = ('maze-figures/fountain_message.gif')  # create a fountain message
+                window.register_shape(fountain_message)
+                message = turtle.Turtle(shape=fountain_message)
+                message.penup()
+                message.setposition(message_position)
+                time.sleep(3)
+                message.hideturtle()
 
-# movement
+    def is_detective_near_fountain(self):
+        return self.detective_player.distance(self.fountain_position) <= 20
 
-starting_pos = (159, -59)
-winning_pos = (-163, 134)
+    def win(self):
+        if self.game_state == "game":
+            if self.is_detective_near_winning_position() and self.cookie_crumbs is True:
+                self.game_state = "win"
+                self.win_screen()
+            elif self.is_detective_near_winning_position() and self.cookie_crumbs is False and self.no_win is False:
+                self.no_win = True
+                message_position = (0, -340)
+                no_win_message = ('maze-figures/no_win_message.gif')
+                window.register_shape(no_win_message)
+                message = turtle.Turtle(shape=no_win_message)
+                message.penup()
+                message.setposition(message_position)
+                time.sleep(2)
+                message.hideturtle()
 
-def win():
-    if detective_player.distance(winning_pos) <= 10:
-        print("You escaped the maze!")
+    def win_screen(self):
+        if self.game_state == "win":
+            turtle.clearscreen()
+            window.bgpic("maze-figures/end_screen.gif")
+            window.listen()
+            window.onkeypress(main, "f")
+            window.onkeypress(self.quit_game, "Return")
+
+    @staticmethod
+    def quit_game():
         quit()
 
-turtle.hideturtle()
-detective_player = turtle.Turtle()
-detective_player.speed(0)
-detective_player.up()
-detective_player.setposition(starting_pos)
-detective_player.setheading(180)
-detective_player.color("purple")
-detective_player.up()
-detective_player.down()
+    def is_detective_near_winning_position(self):
+        return self.detective_player.distance(self.winning_pos) <= 20
+
+    def right(self):
+        self.win()
+        self.find_crumbs()
+        self.find_fountain()
+        window.register_shape('maze-figures/pikachu_left.gif')
+        self.detective_player.shape('maze-figures/pikachu_left.gif')
+        self.collision()
+        self.detective_player.speed(0)
+        self.detective_player.right(0)
+
+    def left(self):
+        self.win()
+        self.find_crumbs()
+        self.find_fountain()
+        window.register_shape('maze-figures/pikachu_right.gif')
+        self.detective_player.shape('maze-figures/pikachu_right.gif')
+        self.detective_player.right(180)
+        self.collision()
+        self.detective_player.speed(0)
+        self.detective_player.right(-180)
+
+    def down(self):
+        self.win()
+        self.find_crumbs()
+        self.find_fountain()
+        window.register_shape('maze-figures/pikachu_up.gif')
+        self.detective_player.shape('maze-figures/pikachu_up.gif')
+        self.detective_player.right(90)
+        self.collision()
+        self.detective_player.speed(0)
+        self.detective_player.right(-90)
+
+    def up(self):
+        self.win()
+        self.find_crumbs()
+        self.find_fountain()
+        window.register_shape('maze-figures/pikachu_down.gif')
+        self.detective_player.shape('maze-figures/pikachu_down.gif')
+        self.detective_player.right(-90)
+        self.collision()
+        self.detective_player.speed(0)
+        self.detective_player.right(90)
+
+    def undo_right(self):
+        self.win()
+        self.find_crumbs()
+        self.find_fountain()
+        window.register_shape('maze-figures/pikachu_right.gif')
+        self.detective_player.shape('maze-figures/pikachu_right.gif')
+        self.detective_player.undo()
+        self.detective_player.undo()
+        self.detective_player.undo()
+
+    def undo_left(self):
+        self.win()
+        self.find_crumbs()
+        self.find_fountain()
+        window.register_shape('maze-figures/pikachu_left.gif')
+        self.detective_player.shape('maze-figures/pikachu_left.gif')
+        self.detective_player.undo()
+        self.detective_player.undo()
+        self.detective_player.undo()
+        self.detective_player.undo()
+        self.detective_player.undo()
+
+    def undo_down(self):
+        self.win()
+        self.find_crumbs()
+        self.find_fountain()
+        window.register_shape('maze-figures/pikachu_down.gif')
+        self.detective_player.shape('maze-figures/pikachu_down.gif')
+        self.detective_player.undo()
+        self.detective_player.undo()
+        self.detective_player.undo()
+        self.detective_player.undo()
+        self.detective_player.undo()
+
+    def undo_up(self):
+        self.win()
+        self.find_crumbs()
+        self.find_fountain()
+        window.register_shape('maze-figures/pikachu_up.gif')
+        self.detective_player.shape('maze-figures/pikachu_up.gif')
+        self.detective_player.undo()
+        self.detective_player.undo()
+        self.detective_player.undo()
+        self.detective_player.undo()
+        self.detective_player.undo()
+
+    def close(self):
+        window.bye()
+
+    def buttonclick(self, x, y):
+        print(f"You clicked at this coordinate({x},{y})")
 
 
-def forward(turt):
-    win()
-    for i in range(10):
-        turt.forward(1)
-        if any(pixel.distance(turt) < 5 for pixel in pixels):
-            break
+def main():
+    play = Game()
+    print("back in the main loop")
+    window.onkeypress(play.right, "a")
+    window.onkeypress(play.left, "d")
+    window.onkeypress(play.up, "s")
+    window.onkeypress(play.down, "w")
+    window.onkeypress(play.close, "q")
+    window.onkeypress(play.undo_right, "Right")
+    window.onkeypress(play.undo_left, "Left")
+    window.onkeypress(play.undo_down, "Down")
+    window.onkeypress(play.undo_up, "Up")
+    # window.onscreenclick(play.buttonclick, 1)
+    window.listen()
+    window.mainloop()
+    turtle.done()
 
 
-def right():
-    win()
-    detective_player.speed(5)
-    forward(detective_player)
-    detective_player.speed(0)
-
-
-def left():
-    win()
-    detective_player.right(180)
-    detective_player.speed(5)
-    forward(detective_player)
-    detective_player.speed(0)
-    detective_player.right(-180)
-
-
-def down():
-    win()
-    detective_player.right(90)
-    detective_player.speed(5)
-    forward(detective_player)
-    detective_player.speed(0)
-    detective_player.right(-90)
-
-
-def up():
-    win()
-    detective_player.right(-90)
-    detective_player.speed(5)
-    forward(detective_player)
-    detective_player.speed(0)
-    detective_player.right(90)
-
-
-def close():
-    window.bye()
-
-
-def buttonclick(x,y):
-    print(f"You clicked at this coordinate({x},{y})")
-
-
-x = turtle.xcor()
-y = turtle.ycor()
-
-window.onkey(right, "a")
-window.onkey(left, "d")
-window.onkey(up, "s")
-window.onkey(down, "w")
-window.onkey(close, "q")
-window.onscreenclick(buttonclick, 1)
-window.listen()
-window.mainloop()
-turtle.done()
-
+if __name__ == '__main__':
+    main()
