@@ -21,8 +21,8 @@ PLAYER_START_X = 65
 PLAYER_START_Y = 256
 
 # Path to the assets folder
-# C:\Users\Student\Documents\Python Games\TheLastCookie\assets\platform_level_01.tmx
 ASSETS_PATH = pathlib.Path(__file__).resolve().parent.parent / "assets"
+print(ASSETS_PATH)
 
 # Class that runs the entire game
 class Platformer(arcade.Window):
