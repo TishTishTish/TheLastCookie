@@ -5,11 +5,9 @@
 import arcade
 import pathlib
 
-from arcade import texture
-
 # Screen Dimension Constants
-SCREEN_WIDTH = 640
-SCREEN_HEIGHT = 480
+SCREEN_WIDTH = 648
+SCREEN_HEIGHT = 468
 SCREEN_TITLE = "El Do-Cookie-Rado | The Last Cookie"
 
 # Scaling Constant
@@ -21,17 +19,17 @@ PLAYER_START_X = 65
 PLAYER_START_Y = 256
 
 # Path to the assets folder
-ASSETS_PATH = pathlib.Path(__file__).resolve().parent.parent / "assets"
-print(ASSETS_PATH)
+ASSETS_PATH = pathlib.Path(__file__).resolve().parent.parent / "Platformer" / "assets"
+# print(ASSETS_PATH)
 
 # Class that runs the entire game
 class Platformer(arcade.Window):
     # Initialise game object
-    def __init__(self):
+    def __init__(self) -> None:
         super().__init__(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE)
         
         # The sprites in the game
-        self.coins = None
+        self.cookies = None
         self.background = None
         self.walls = None
         self.ladders = None
@@ -51,14 +49,14 @@ class Platformer(arcade.Window):
         #self.jump_sound = arcade.load_sound(str(ASSETS_PATH / "audio" / "sounds" / "jump.mp3"))
     
     # Set Up game
-    def setup(self):
+    def setup(self) -> None:
         # Get current map for this particular level
         map_name = f"platform_level_{self.level:02}.tmx"
         map_path = ASSETS_PATH / map_name
         
         # Name of the layers
         ground_layer = "ground"
-        cookie_layer = "coins"
+        cookie_layer = "cookies"
         goal_layer = "goal"
         background_layer = "background"
         ladders_layer = "ladders"
@@ -92,12 +90,12 @@ class Platformer(arcade.Window):
         # Load up the physics engine
         self.physics_engine = arcade.PhysicsEnginePlatformer(
             player_sprite=self.player,
-            platform=self.walls,
+            platforms=self.walls,
             gravity_constant=GRAVITY,
             ladders=self.ladders,
         )
     
-    def create_player_sprite(self):
+    def create_player_sprite(self) -> arcade.AnimatedWalkingSprite:
         # Create Player Sprite
         
         # Location of Player Sprites
@@ -108,7 +106,7 @@ class Platformer(arcade.Window):
         standing_path = texture_path / "standing_l.png"
         
         # Load all the textures
-        walking_right_textures = [arcade.load_texture(texture) for texture_path in walking_paths]
+        walking_right_textures = [arcade.load_texture(texture) for texture in walking_paths]
         walking_left_textures = [arcade.load_texture(texture, mirrored=True) for texture in walking_paths]
         standing_right_textures = [arcade.load_texture(standing_path)]
         standing_left_textures = [arcade.load_texture(standing_path, mirrored=True)]
@@ -147,7 +145,7 @@ class Platformer(arcade.Window):
         # return super().on_update(delta_time)
         pass
     
-    def on_draw(self):
+    def on_draw(self) -> None:
         arcade.start_render()
         
         # Draw all sprites
@@ -161,4 +159,4 @@ class Platformer(arcade.Window):
 if __name__ == "__main__":
     window = Platformer()
     window.setup()
-    window.run()
+    arcade.run()
