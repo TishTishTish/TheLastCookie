@@ -104,82 +104,82 @@ game_state = "splash"
 while True:
     window.update() # every time loop runs it updates screen
     
-#     if game_state == "splash":
-#         window.bgpic("splash.gif")
-#         
-#     elif game_state == "game":
-#         window.bgpic("game.gif")
-#         
+    if game_state == "splash":
+        window.bgpic("splash.gif")
+        
+    elif game_state == "game":
+        window.bgpic("nopic")
+        
 #     elif game_state == "gameover":
 #         window.bgpic("game_over.gif")
+#         
         
-        
-    # move the Jammie Dodger
-    ball.setx(ball.xcor() + ball.dx) # setx()
-    ball.sety(ball.ycor() + ball.dy) # sety()
-    
-
-    # checks gameplay area
-    
-    # top 
-    if ball.ycor() > 270:
-        ball.sety(270)
-        ball.dy *= -1
-        winsound.PlaySound("splat_wall.wav", winsound.SND_ASYNC)
-
-    # bottom
-    elif ball.ycor() < -270:
-        ball.sety(-270)
-        ball.dy *= -1
-        winsound.PlaySound("splat_wall.wav", winsound.SND_ASYNC)
-
-    # Left and right
-    if ball.xcor() > 325: # past right paddle off screen
-        ball.goto(0, 0) # back to centre
-        ball.dx = 1 # reset to initial speed
-        human += 1 # player a scores a point
-        pen.clear() # clears
-        pen.write("Detective: {}  /  Jamie Dodger: {}".format(human, computer), align="center", font=("San Serif", 16, "normal"))
-       
-    elif ball.xcor() < -325: # past left paddle off screen
-        ball.goto(0, 0) # back to centre
-        ball.dx = 1 # resets to initial speed
-        computer += 1 # player b scores a point
-        pen.clear() # clears
-        pen.write("Detective: {}  /  Jamie Dodger: {}".format(human, computer), align="center", font=("San Serif", 16, "normal"))    
+        # move the ball
+        ball.setx(ball.xcor() + ball.dx) # setx()
+        ball.sety(ball.ycor() + ball.dy) # sety()
         
 
-    # Paddle and ball collisions
-    if ball.xcor() < -320 and ball.ycor() < baguette_1.ycor() + 100 and ball.ycor() > baguette_1.ycor() - 100:
-        ball.dx *= -1
-        ball.dx +=0.2 # speed it up
-        winsound.PlaySound("splat_baguette.wav", winsound.SND_ASYNC)
-    
-    elif ball.xcor() > 320 and ball.ycor() < baguette_2.ycor() + 100 and ball.ycor() > baguette_2.ycor() - 100:
-        ball.dx *= -1
-        ball.dx -=0.2 # speed it up
-        winsound.PlaySound("splat_baguette", winsound.SND_ASYNC)
-
-    # computer player movements
-    if baguette_2.ycor() < ball.ycor() and abs(baguette_2.ycor() - ball.ycor()) > 20:
-        baguette_2_up()
-               
+        # checks gameplay area
         
-    elif baguette_2.ycor() > ball.ycor() and abs(baguette_2.ycor() - ball.ycor()) > 20:
-        baguette_2_down()
+        # top 
+        if ball.ycor() > 270:
+            ball.sety(270)
+            ball.dy *= -1
+            winsound.PlaySound("splat_wall.wav", winsound.SND_ASYNC)
+
+        # bottom
+        elif ball.ycor() < -270:
+            ball.sety(-270)
+            ball.dy *= -1
+            winsound.PlaySound("splat_wall.wav", winsound.SND_ASYNC)
+
+        # Left and right
+        if ball.xcor() > 325: # past right paddle off screen
+            ball.goto(0, 0) # back to centre
+            ball.dx = 1 # reset to initial speed
+            human += 1 # player a scores a point
+            pen.clear() # clears
+            pen.write("Detective: {}  /  Jamie Dodger: {}".format(human, computer), align="center", font=("San Serif", 16, "normal"))
+           
+        elif ball.xcor() < -325: # past left paddle off screen
+            ball.goto(0, 0) # back to centre
+            ball.dx = 1 # resets to initial speed
+            computer += 1 # player b scores a point
+            pen.clear() # clears
+            pen.write("Detective: {}  /  Jamie Dodger: {}".format(human, computer), align="center", font=("San Serif", 16, "normal"))    
+            
+
+        # Paddle and ball collisions
+        if ball.xcor() < -320 and ball.ycor() < baguette_1.ycor() + 100 and ball.ycor() > baguette_1.ycor() - 100:
+            ball.dx *= -1
+            ball.dx +=0.2 # speed it up
+            winsound.PlaySound("splat_baguette.wav", winsound.SND_ASYNC)
         
+        elif ball.xcor() > 320 and ball.ycor() < baguette_2.ycor() + 100 and ball.ycor() > baguette_2.ycor() - 100:
+            ball.dx *= -1
+            ball.dx -=0.2 # speed it up
+            winsound.PlaySound("splat_baguette", winsound.SND_ASYNC)
 
-# score result
+        # computer player movements
+        if baguette_2.ycor() < ball.ycor() and abs(baguette_2.ycor() - ball.ycor()) > 20:
+            baguette_2_up()
+                   
+            
+        elif baguette_2.ycor() > ball.ycor() and abs(baguette_2.ycor() - ball.ycor()) > 20:
+            baguette_2_down()
+            
 
-    if human == 5:
-        turtle.clearscreen()
-        human_wins = True
-        break
+    # score result
 
-    elif computer == 5:
-        turtle.clearscreen()
-        computer_wins = True
-        break
+        if human == 5:
+            turtle.clearscreen()
+            human_wins = True
+            break
+
+        elif computer == 5:
+            turtle.clearscreen()
+            computer_wins = True
+            break
 
 
 while True:
@@ -195,7 +195,7 @@ while True:
         pen.hideturtle()
         pen.goto(0, 260)
         pen.write("Jamie Dodger Wins!", align="center", font=("Courier New", 16, "normal"))
-        
+            
 
 
 
