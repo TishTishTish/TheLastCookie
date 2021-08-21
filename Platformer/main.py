@@ -7,6 +7,7 @@ import pygame
 from pygame import mixer
 import pathlib
 
+# Initialise Pygame - Need this for looping background music
 pygame.init()
 mixer.init()
 
@@ -27,7 +28,6 @@ PLAYER_MOVE_SPEED = 2
 PLAYER_JUMP_SPEED = 10
 
 # Viewport margins
-# How close do we have to be to scroll the viewport?
 LEFT_VIEWPORT_MARGIN = 0
 RIGHT_VIEWPORT_MARGIN = 0
 TOP_VIEWPORT_MARGIN = 0
@@ -41,7 +41,7 @@ class Platformer(arcade.Window):
     def __init__(self) -> None:
         super().__init__(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE)
 
-        # These lists will hold different sets of sprites
+        # Sprite List
         self.cookies = None
         self.background = None
         self.walls = None
@@ -49,19 +49,19 @@ class Platformer(arcade.Window):
         self.goals = None
         self.enemies = None
 
-        # One sprite for the player, no more is needed
+        # Player Sprite
         self.player = None
 
-        # We need a physics engine as well
+        # Phyics Engine
         self.physics_engine = None
 
-        # Someplace to keep score
+        # Keeping score
         self.score = 0
 
-        # Which level are we on?
+        # Current Level
         self.level = 1
 
-        # Load up our sounds here
+        # Load sound effects
         self.cookie_sound = arcade.load_sound(
             str(ASSETS_PATH / "audio" / "sounds" / "select.mp3")
         )
@@ -70,9 +70,9 @@ class Platformer(arcade.Window):
         )
 
     def setup(self) -> None:
-        """Sets up the game for the current level"""
+        # Set up game for current level
 
-        # Get the current map based on the level
+        # Current map according level
         map_name = f"platform_level_{self.level:02}.tmx"
         map_path = ASSETS_PATH / map_name
 
@@ -143,14 +143,12 @@ class Platformer(arcade.Window):
         )
 
     def create_player_sprite(self) -> arcade.AnimatedWalkingSprite:
-        """Creates the animated player sprite
-        Returns:
-            The properly setup player sprite
-        """
-        # Where are the player images stored?
+        # Create the player sprite
+        
+        # Folder location of sprites
         texture_path = ASSETS_PATH / "images" / "player"
 
-        # Setup the appropriate textures
+        # Setup textures
         walking_paths = [
             texture_path / f"walking_to_right{x}.png" for x in (1, 2)
         ]
@@ -159,7 +157,7 @@ class Platformer(arcade.Window):
         ]
         standing_path = texture_path / "standing_l.png"
 
-        # Load them all now
+        # Load textures
         walking_right_textures = [
             arcade.load_texture(texture) for texture in walking_paths
         ]
@@ -184,7 +182,7 @@ class Platformer(arcade.Window):
         # Create the sprite
         player = arcade.AnimatedWalkingSprite()
 
-        # Add the proper textures
+        # Add the textures
         player.stand_left_textures = standing_left_textures
         player.stand_right_textures = standing_right_textures
         player.walk_left_textures = walking_left_textures
@@ -203,11 +201,6 @@ class Platformer(arcade.Window):
         return player
 
     def on_key_press(self, key: int, modifiers: int) -> None:
-        """Arguments:
-        key -- Which key was pressed
-        modifiers -- Which modifiers were down at the time
-        """
-
         # Check for player left/right movement
         if key in [arcade.key.LEFT, arcade.key.J]:
             self.player.change_x = -PLAYER_MOVE_SPEED
@@ -230,11 +223,6 @@ class Platformer(arcade.Window):
                 arcade.play_sound(self.jump_sound)
 
     def on_key_release(self, key: int, modifiers: int) -> None:
-        """Arguments:
-        key -- The key which was released
-        modifiers -- Which modifiers were down at the time
-        """
-
         # Check for player left/right movement
         if key in [
             arcade.key.LEFT,
@@ -255,11 +243,6 @@ class Platformer(arcade.Window):
                 self.player.change_y = 0
 
     def on_update(self, delta_time: float) -> None:
-        """Updates the position of all game objects
-        Arguments:
-            delta_time {float} -- How much time since the last call
-        """
-
         # Update the player animation
         self.player.update_animation(delta_time)
 
@@ -270,7 +253,7 @@ class Platformer(arcade.Window):
         if self.player.left < 0:
             self.player.left = 0
 
-        # Check if we've picked up a cookie
+        # Check if a cookie has been picked up
         cookies_hit = arcade.check_for_collision_with_list(
             sprite=self.player, sprite_list=self.cookies
         )
@@ -299,7 +282,7 @@ class Platformer(arcade.Window):
         self.scroll_viewport()
 
     def scroll_viewport(self) -> None:
-        """Scrolls the viewport when the player gets close to the edges"""
+        # Attempted to create a camera to follow the player's movement
         # Scroll left
         # Find the current left boundary
         left_boundary = self.view_left + LEFT_VIEWPORT_MARGIN
@@ -356,10 +339,10 @@ class Platformer(arcade.Window):
         self.ladders.draw()
         self.player.draw()
 
-        # Draw the score in the lower left
+        # Define the score variable
         score_text = f"Score: {self.score}"
 
-        # First a black background for a shadow effect
+        # Draw the score onto the screen
         arcade.draw_text(
             score_text,
             start_x=12 + self.view_left,
