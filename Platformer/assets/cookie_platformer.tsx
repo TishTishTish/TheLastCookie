@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset version="1.5" tiledversion="1.7.2" name="cookie_platformer" tilewidth="24" tileheight="24" tilecount="182" columns="0">
+<tileset version="1.5" tiledversion="1.7.2" name="cookie_platformer" tilewidth="24" tileheight="24" tilecount="185" columns="0">
  <grid orientation="orthogonal" width="1" height="1"/>
  <tile id="0">
   <image width="18" height="18" source="images/Tiles/tile_0000.png"/>
@@ -546,5 +546,14 @@
  </tile>
  <tile id="182">
   <image width="16" height="16" source="images/pixel__cookie.png"/>
+ </tile>
+ <tile id="183">
+  <image width="18" height="18" source="images/Tiles/tile_0124.png"/>
+ </tile>
+ <tile id="184">
+  <image width="18" height="18" source="images/Tiles/tile_0125.png"/>
+ </tile>
+ <tile id="185">
+  <image width="18" height="18" source="images/Tiles/tile_0126.png"/>
  </tile>
 </tileset>
