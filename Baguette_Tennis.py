@@ -4,7 +4,7 @@
 # 2/ redo simple code into OOP
 # 3/ ball movement in a function
 # 4/ specular reflection or random angle of ball on return
-# 5/ spinning jammie dodger which spins in different directions on return
+# 5/ spinning jammie dodger which spins in different direction on return
 # 6/ better collision detection
 # 7/ proper graphic end screen
 
