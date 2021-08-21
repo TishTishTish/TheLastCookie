@@ -1,5 +1,5 @@
 # El Do-Cookie-Rado - Platform Game
-# A part of 'The Last Cookie' gamw
+# A part of 'The Last Cookie' game
 # Created by Ahartisha Selakanabarajah
 
 import arcade
