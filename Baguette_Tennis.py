@@ -1,8 +1,18 @@
+### future features ###
+
+# 1/ link back into main game
+# 2/ redo simple code into OOP
+# 3/ ball movement in a function
+# 4/ specular reflection or random angle of ball on return
+# 5/ spinning jammie dodger which spins in different directions on return
+# 6/ better collision detection
+# 7/ proper graphic end screen
+
 
 # import modules
 import turtle # import turtle
 import winsound # sound for windows machines
-import random # for random angle of ball on return - feature to add in future
+import random # for random angle of ball on return - feature to add
 
 
 # game state to start game
