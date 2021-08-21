@@ -116,31 +116,32 @@ while True:
         # top 
         if ball.ycor() > 270:
             ball.sety(270)
-            ball.dy *= -1
+            ball.dy *= -1 # reverse ball direction
             winsound.PlaySound("splat_wall.wav", winsound.SND_ASYNC)
 
         # bottom
         elif ball.ycor() < -270:
             ball.sety(-270)
-            ball.dy *= -1
+            ball.dy *= -1 # reverse ball direction
             winsound.PlaySound("splat_wall.wav", winsound.SND_ASYNC)
 
-        # Left and right
-        if ball.xcor() > 325: # past right bat and off screen
+        # left side    
+        if ball.xcor() < -325: # past baguette_1 and off screen
+            ball.goto(0, -20) # returns to start position
+            ball.dx = -1 # reset to initial speed and next go ball goes towards opponent
+            computer += 1 # player b scores a point
+            pen.clear() # clears
+            winsound.PlaySound("evil_laugh.wav", winsound.SND_ASYNC)
+            pen.write("Detective: {}  /  Jamie Dodger: {}".format(human, computer), align="center", font=("Courier New", 16, "normal"))
+        
+        # right side
+        elif ball.xcor() > 325: # past baguette_2 and off screen
             ball.goto(0, -20) # returns to start position
             ball.dx = 1 # reset to initial speed and next go ball goes towards opponent
             human += 1 # player a scores a point
             pen.clear() # clears
             winsound.PlaySound("win_point.wav", winsound.SND_ASYNC)
             pen.write("Detective: {}  /  Jamie Dodger: {}".format(human, computer), align="center", font=("Courier New", 16, "normal"))
-                       
-        elif ball.xcor() < -325: # past left bat and off screen
-            ball.goto(0, -20) # returns to start position
-            ball.dx = -1 # reset to initial speed and next go ball goes towards opponent
-            computer += 1 # player b scores a point
-            pen.clear() # clears
-            winsound.PlaySound("evil_laugh.wav", winsound.SND_ASYNC)
-            pen.write("Detective: {}  /  Jamie Dodger: {}".format(human, computer), align="center", font=("Courier New", 16, "normal"))    
             
 
         # Baguette and ball collisions
