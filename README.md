@@ -1,7 +1,7 @@
 Baguette Tennis
 ===============
 
-CLONE of the classic arcade and early home console game PONG!
+CLONE of the classic arcade and early home console game PONG.
 
 Major Jamie Dodger-McCrumbs has a heart of jam, but a ferocious temper which makes for some sticky situations! 
 
