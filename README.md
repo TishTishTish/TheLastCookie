@@ -11,12 +11,15 @@ Use the UP and DOWN cursor keys to move your baguette and deflect the Jammie Dod
 
 --------------------
 
-RESOURCES
+Resources
 =========
 
 Pikachu - https://www.pinclipart.com/maxpin/iTomwmw/
+
 Baguette - https://www.pngfind.com/pngs/b/289-2895875_baguette-png.png
+
 Jammie Dodger #1 - https://www.burtonsbiscuits.com/our-brands/jammie-dodgers/
+
 Jammie Dodger #2 - https://www.subpng.com/png-qeszkg/ 
 
 Sounds - soundbible.com
