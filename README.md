@@ -16,11 +16,9 @@ This minigame was created in Turtle.
 ###### Save Gingy- A Game of Hangman :cookie: :open_mouth:
 Save Gingy is a twist on the classic game of Hangman. Inspired by a scene in the popular movie Shrek, Gingy is in danger of being broken apart by Lord Farquaad. It is up to the detective (the user) to guess the correct dessert-related word to successfully win a clue. 
 
-This minigame was created using the following modules: Pygame, Random. It requires the user to press any key to access the hangman game and then clicking the buttons to put forward a letter. The character will lose parts of itself on the screen, giving the user 7 tries to guess the words. If they are unsuccessful, the image will disappear and an end screen will pop up confirming the loss and the correct word. 
+This minigame was created using the following modules and therefore requires their installation: Pygame, Random. It requires the user to press any key to access the hangman game and then clicking the buttons to put forward a letter. The character will lose parts of itself on the screen, giving the user 7 tries to guess the words. If they are unsuccessful, the image will disappear and an end screen will pop up confirming the loss and the correct word. 
 
 ###### El Do-Cookie-Rado - A Platformer Game :cookie:✨
-About
-
 A part of the text-based adventure game 'The Last Cookie' and as the detective on this case, it appears Queen Rich Tea may have fooled you into reading her book about the forgottem city of 'El Do-Cookie-Rado'. The book turns into a portal key and sucks you into a vortex, taking you to the legendary city itself. Complete the levels and collect as many cookies as possible to find the fourth clue you need for this mystery!
 
 Prerequisites
