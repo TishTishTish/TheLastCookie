@@ -424,7 +424,6 @@ class PlatformerView(arcade.View):
             view = EndView()
             self.window.show_view(view)
         
-
         # Set the viewport, scrolling if necessary
         self.scroll_viewport()
 
