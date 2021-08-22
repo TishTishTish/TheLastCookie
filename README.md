@@ -38,7 +38,9 @@ Acknowledgements
 Assets were downloaded from:
 
 Pixel Platformer Package by Kenney - https://kenney.nl/assets/pixel-platformer
+
 Happy Loops by Goose Ninja (Background Music) - https://gooseninja.itch.io/happy-loops
+
 RetroSE Pack 01 by Ryuheidou (Sound Effects) - https://nishinoryuhei.itch.io/retrosepack01
 
 ###### Baguette Tennis :baguette_bread: :cookie:
