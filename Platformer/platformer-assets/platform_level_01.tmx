@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="36" height="26" tilewidth="18" tileheight="18" infinite="0" nextlayerid="6" nextobjectid="19">
+<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="36" height="26" tilewidth="18" tileheight="18" infinite="0" nextlayerid="7" nextobjectid="19">
  <tileset firstgid="1" source="cookie_platformer.tsx"/>
  <layer id="1" name="ground" width="36" height="26">
   <data encoding="base64" compression="zlib">
    eJxjYBgFo2AUjIKhB2YB8WwgnjNq/5AGTEDMDMQsVDALFiYwPBTDhlB4UCu8hkpYUepfaqav4QBGaniIAbE4FEugydE7TEBukQLiaiiWxOImegF0t1DTTeJkYGxuQXYTOWbCMC5zR/HgxADidkk+
+  </data>
+ </layer>
+ <layer id="6" name="portal" width="36" height="26">
+  <data encoding="base64" compression="zlib">
+   eJztwTEBAAAAwqD1T20MH6AAAADgbw6gAAE=
   </data>
  </layer>
  <layer id="2" name="background" width="36" height="26">

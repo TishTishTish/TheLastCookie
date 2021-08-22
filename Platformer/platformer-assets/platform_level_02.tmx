@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="36" height="26" tilewidth="18" tileheight="18" infinite="0" nextlayerid="6" nextobjectid="31">
+<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="36" height="26" tilewidth="18" tileheight="18" infinite="0" nextlayerid="7" nextobjectid="31">
  <tileset firstgid="1" source="cookie_platformer.tsx"/>
  <layer id="1" name="ground" width="36" height="26">
   <data encoding="base64" compression="zlib">
    eJztU1sOgzAMY48zdIyjAidhO+zyQaTKIq3VZoWhWfKf5Thu2nV/eGERvoTvvYMcBN59qJ/y13r+1n1cdpjZArXZU7144Sq8Ce8NZuWA+1r7t+jFYzb+99JbyM080hu2wJn3DcLHyp7QMSjpS/0H4bTyaWQKkY7JnpqZ80diJks7RxrtI9WJ+rD+mEl7YHNbGbZ8GP8Sxh1ZfXjNYsjcW4r4l2p1Vkcjuc8IPrU6vAX2JgLoe8c8JcT+5hPl+QAYzH+Y
+  </data>
+ </layer>
+ <layer id="6" name="portal" width="36" height="26">
+  <data encoding="base64" compression="zlib">
+   eJztwTEBAAAAwqD1T20MH6AAAADgbw6gAAE=
   </data>
  </layer>
  <layer id="2" name="background" width="36" height="26">

@@ -179,6 +179,11 @@ class EndView(arcade.View):
             height=SCREEN_HEIGHT,
             texture=self.title_image,
         )
+    
+    def on_key_press(self, key: int, modifiers: int):
+        if key == arcade.key.ESCAPE:
+            arcade.close_window()
+            print("End of El Do-Cookie-Rado")
 
 class PlatformerView(arcade.View):
     def __init__(self) -> None:
@@ -190,7 +195,7 @@ class PlatformerView(arcade.View):
         self.walls = None
         self.ladders = None
         self.goals = None
-        self.enemies = None
+        self.portal = None
 
         # Player Sprite
         self.player = None
@@ -225,6 +230,7 @@ class PlatformerView(arcade.View):
         goal_layer = "goal"
         background_layer = "background"
         ladders_layer = "ladders"
+        portal_layer = "portal"
 
         # Load the current map
         game_map = arcade.tilemap.read_tmx(str(map_path))
@@ -244,6 +250,9 @@ class PlatformerView(arcade.View):
         )
         self.cookies = arcade.tilemap.process_layer(
             game_map, layer_name=cookie_layer, scaling=MAP_SCALING
+        )
+        self.portal = arcade.tilemap.process_layer(
+            game_map, layer_name=portal_layer, scaling=MAP_SCALING
         )
 
         # Set the background color
@@ -420,6 +429,15 @@ class PlatformerView(arcade.View):
             # Setup the next level
             self.level += 1
             self.setup()
+            
+        # Check if the player has reached the end of the game i.e. found the key
+        end_of_game = arcade.check_for_collision_with_list(
+            sprite=self.player, sprite_list=self.portal
+        )
+        
+        if end_of_game:
+            view = EndView()
+            self.window.show_view(view)
         
         # Set the viewport, scrolling if necessary
         self.scroll_viewport()
@@ -480,6 +498,7 @@ class PlatformerView(arcade.View):
         self.cookies.draw()
         self.goals.draw()
         self.ladders.draw()
+        self.portal.draw()
         self.player.draw()
 
         # Define the score variable

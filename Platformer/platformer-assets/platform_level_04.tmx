@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="36" height="26" tilewidth="18" tileheight="18" infinite="0" nextlayerid="6" nextobjectid="37">
+<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="36" height="26" tilewidth="18" tileheight="18" infinite="0" nextlayerid="7" nextobjectid="37">
  <tileset firstgid="1" source="cookie_platformer.tsx"/>
  <layer id="1" name="ground" width="36" height="26">
   <data encoding="base64" compression="zlib">
@@ -8,12 +8,17 @@
  </layer>
  <layer id="2" name="background" width="36" height="26">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFgwlMHGgH0BgMd/+RA+oH2gGDDNQOtANGwaAFdXS0azRfjoJRMPRBIhXNwlU31ROQRwbdQNxDHedQBXQNtAOIAKNtgpEJAJtoBxQ=
+   eJxjYBgFgwlEDrQDaAwmDrQDBiGoH2gHDDJQO9AOGAWDFtTR0a7RfDkKRsHQB4lUNAtX3VRPQB4ZdANxD3WcQxXQNdAOIAKMtglGJgAAv7sG3A==
   </data>
  </layer>
- <layer id="4" name="goal" width="36" height="26">
+ <layer id="4" name="portal" width="36" height="26">
   <data encoding="base64" compression="zlib">
-   eJztzjERADAIADFsVgVyardlQwEsyd3vH0HJ7YHm/O72BAAAwLAHLXoBYA==
+   eJztzjEBAAAIA6AFsX9OW0wPSEDCR3MdAAAAKFt7jwAd
+  </data>
+ </layer>
+ <layer id="6" name="goal" width="36" height="26">
+  <data encoding="base64" compression="zlib">
+   eJztwTEBAAAAwqD1T20MH6AAAADgbw6gAAE=
   </data>
  </layer>
  <layer id="3" name="ladders" width="36" height="26">
