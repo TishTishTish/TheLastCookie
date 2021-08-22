@@ -43,7 +43,7 @@ class TitleView(arcade.View):
         super().__init__()
 
         # Find the title image in the images folder
-        title_image_path = ASSETS_PATH / "images" / "title-screen.PNG"
+        title_image_path = ASSETS_PATH / "images" / "title-screen.png"
 
         # Load our title image
         self.title_image = arcade.load_texture(title_image_path)
@@ -103,7 +103,7 @@ class HelpView(arcade.View):
 
         # Find the help image in the image folder
         help_image_path = (
-            ASSETS_PATH / "images" / "help-screen.PNG"
+            ASSETS_PATH / "images" / "help-screen.png"
         )
 
         # Load our title image
@@ -137,7 +137,7 @@ class EndView(arcade.View):
         super().__init__()
 
         # Find the title image in the images folder
-        title_image_path = ASSETS_PATH / "images" / "victory-screen.PNG"
+        title_image_path = ASSETS_PATH / "images" / "victory-screen.png"
 
         # Load our title image
         self.title_image = arcade.load_texture(title_image_path)
