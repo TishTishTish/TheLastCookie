@@ -8,12 +8,12 @@
  </layer>
  <layer id="2" name="background" width="36" height="26">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFgwlMHGgH0BgMd/+RA+oH2gGDDNQOtANGwaAFdXS0azRfjoJRMPRBKRXNwlU31ROQRwbdQNxDHedQBXQNtAOIAKNtgpEJAOYYByg=
+   eJxjYBgFgwlMHGgH0BgMd/+RA+oH2gGDDNQOtANGwaAFdXS0azRfjoJRMPRBIhXNwlU31ROQRwbdQNxDHedQBXQNtAOIAKNtgpEJAJtoBxQ=
   </data>
  </layer>
  <layer id="4" name="goal" width="36" height="26">
   <data encoding="base64" compression="zlib">
-   eJztzqENACAQBMFvE0kFlEO7gENjLiQzyfqt4hjpgUvbzfQEAMDHenoAeLIAl8UBwQ==
+   eJztzjERADAIADFsVgVyardlQwEsyd3vH0HJ7YHm/O72BAAAwLAHLXoBYA==
   </data>
  </layer>
  <layer id="3" name="ladders" width="36" height="26">

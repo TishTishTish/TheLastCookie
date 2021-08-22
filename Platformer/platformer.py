@@ -3,6 +3,7 @@
 # Created by Ahartisha Selakanabarajah
 
 import arcade
+from arcade.application import View
 import pygame
 from pygame import mixer
 import pathlib
@@ -210,7 +211,7 @@ class PlatformerView(arcade.View):
         self.jump_sound = arcade.load_sound(
             str(ASSETS_PATH / "audio" / "sounds" / "jump.mp3")
         )
-
+    
     def setup(self) -> None:
         # Set up game for current level
 
@@ -419,10 +420,6 @@ class PlatformerView(arcade.View):
             # Setup the next level
             self.level += 1
             self.setup()
-            
-        if self.level == 5:
-            view = EndView()
-            self.window.show_view(view)
         
         # Set the viewport, scrolling if necessary
         self.scroll_viewport()
