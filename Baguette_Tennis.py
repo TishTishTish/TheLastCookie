@@ -9,6 +9,7 @@
 # 7/ proper graphic end screen
 
 
+
 # import modules
 import turtle # import turtle
 import winsound # sound for windows machines
@@ -188,17 +189,12 @@ while True:
 while True:
     if human_wins:
         window.bgcolor("black") # background colour
-        pen.penup() # avoids drawing line
-        pen.hideturtle()
-        pen.goto(0, 200) # position on screen 
-        pen.write("You win! Your clue fragment is: 0000", align="center", font=("Courier New", 16, "normal"))
-                
+        window.bgpic("end_win_screen.gif")
+        
     elif computer_wins:
-        window.bgcolor("black") # background colour   
-        pen.penup() # avoids drawing line
-        pen.hideturtle()
-        pen.goto(0, 200) # position on screen         
-        pen.write("Major Jamie Dodger-McCrumbs Wins!", align="center", font=("Courier New", 16, "normal"))       
+        window.bgcolor("black") # background colour
+        window.bgpic("end_lose_screen.gif")
+      
 
     
         
