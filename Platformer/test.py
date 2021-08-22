@@ -13,3 +13,4 @@ class TestPlatformer(unittest.TestCase):
     
     def collected_cookie(self):
         pass
+    
