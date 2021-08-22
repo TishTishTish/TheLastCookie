@@ -34,7 +34,7 @@ TOP_VIEWPORT_MARGIN = 0
 BOTTOM_VIEWPORT_MARGIN = 0
 
 # Assets path
-ASSETS_PATH = pathlib.Path(__file__).resolve().parent.parent / "Platformer" / "assets"
+ASSETS_PATH = pathlib.Path(__file__).resolve().parent.parent / "Platformer" / "platformer-assets"
 
 # Title view
 class TitleView(arcade.View):
