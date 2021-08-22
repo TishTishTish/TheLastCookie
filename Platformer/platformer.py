@@ -36,10 +36,152 @@ BOTTOM_VIEWPORT_MARGIN = 0
 # Assets path
 ASSETS_PATH = pathlib.Path(__file__).resolve().parent.parent / "Platformer" / "assets"
 
-
-class Platformer(arcade.Window):
+# Title view
+class TitleView(arcade.View):
     def __init__(self) -> None:
-        super().__init__(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE)
+        super().__init__()
+
+        # Find the title image in the images folder
+        title_image_path = ASSETS_PATH / "images" / "title-screen.PNG"
+
+        # Load our title image
+        self.title_image = arcade.load_texture(title_image_path)
+
+        # Set our display timer
+        self.display_timer = 3.0
+
+        # Are we showing the help?
+        self.show_help = False
+        
+        # Load background music
+        mixer.music.load(str(ASSETS_PATH / "audio" / "music" / "intro.wav"))
+        
+        # Start background music
+        mixer.music.play(loops=-1)
+
+    def on_update(self, delta_time: float) -> None:
+        # First, count down the time
+        self.display_timer -= delta_time
+
+        # If the timer has run out, toggle help
+        if self.display_timer < 0:
+
+            # Toggle whether to show the help
+            self.show_help = not self.show_help
+
+            # And reset the timer so the help flash slowly
+            self.display_timer = 1.0
+
+    def on_draw(self) -> None:
+        # Start the rendering loop
+        arcade.start_render()
+
+        # Draw a rectangle filled with title screen
+        arcade.draw_texture_rectangle(
+            center_x=SCREEN_WIDTH / 2,
+            center_y=SCREEN_HEIGHT / 2,
+            width=SCREEN_WIDTH,
+            height=SCREEN_HEIGHT,
+            texture=self.title_image,
+        )
+
+    def on_key_press(self, key: int, modifiers: int) -> None:
+        if key == arcade.key.RETURN:
+            game_view = PlatformerView()
+            game_view.setup()
+            self.window.show_view(game_view)
+        elif key == arcade.key.Q:
+            help_view = HelpView()
+            self.window.show_view(help_view)
+
+
+# Help Screen
+class HelpView(arcade.View):
+    def __init__(self) -> None:
+        super().__init__()
+
+        # Find the help image in the image folder
+        help_image_path = (
+            ASSETS_PATH / "images" / "help-screen.PNG"
+        )
+
+        # Load our title image
+        self.help_image = arcade.load_texture(help_image_path)
+
+    def on_draw(self) -> None:
+        # Start the rendering loop
+        arcade.start_render()
+
+        # Draw a rectangle filled with the help image
+        arcade.draw_texture_rectangle(
+            center_x=SCREEN_WIDTH / 2,
+            center_y=SCREEN_HEIGHT / 2,
+            width=SCREEN_WIDTH,
+            height=SCREEN_HEIGHT,
+            texture=self.help_image,
+        )
+
+    def on_key_press(self, key: int, modifiers: int) -> None:
+        if key == arcade.key.RETURN:
+            game_view = PlatformerView()
+            game_view.setup()
+            self.window.show_view(game_view)
+
+        elif key == arcade.key.ESCAPE:
+            title_view = TitleView()
+            self.window.show_view(title_view)
+
+class EndView(arcade.View):
+    def __init__(self) -> None:
+        super().__init__()
+
+        # Find the title image in the images folder
+        title_image_path = ASSETS_PATH / "images" / "victory-screen.PNG"
+
+        # Load our title image
+        self.title_image = arcade.load_texture(title_image_path)
+
+        # Set our display timer
+        self.display_timer = 3.0
+
+        # Are we showing the help?
+        self.show_help = False
+        
+        # Load background music
+        mixer.music.load(str(ASSETS_PATH / "audio" / "music" / "back-home.wav"))
+        
+        # Start background music
+        mixer.music.play(loops=-1)
+
+    def on_update(self, delta_time: float) -> None:
+        # First, count down the time
+        self.display_timer -= delta_time
+
+        # If the timer has run out, toggle help
+        if self.display_timer < 0:
+
+            # Toggle whether to show the help
+            self.show_help = not self.show_help
+
+            # And reset the timer so the help flash slowly
+            self.display_timer = 1.0
+
+    def on_draw(self) -> None:
+        # Start the rendering loop
+        arcade.start_render()
+
+        # Draw a rectangle filled with title screen
+        arcade.draw_texture_rectangle(
+            center_x=SCREEN_WIDTH / 2,
+            center_y=SCREEN_HEIGHT / 2,
+            width=SCREEN_WIDTH,
+            height=SCREEN_HEIGHT,
+            texture=self.title_image,
+        )
+
+class PlatformerView(arcade.View):
+    def __init__(self) -> None:
+        super().__init__()
 
         # Sprite List
         self.cookies = None
@@ -277,6 +419,11 @@ class Platformer(arcade.Window):
             # Setup the next level
             self.level += 1
             self.setup()
+            
+        if self.level == 5:
+            view = EndView()
+            self.window.show_view(view)
+        
 
         # Set the viewport, scrolling if necessary
         self.scroll_viewport()
@@ -352,6 +499,9 @@ class Platformer(arcade.Window):
         )
 
 if __name__ == "__main__":
-    window = Platformer()
-    window.setup()
+    window = arcade.Window(
+        width=SCREEN_WIDTH, height=SCREEN_HEIGHT, title=SCREEN_TITLE
+    )
+    title_view = TitleView()
+    window.show_view(title_view)
     arcade.run()

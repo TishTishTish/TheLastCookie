@@ -1,7 +1,7 @@
 import unittest
 from unittest import result
 
-from main import Platformer
+from platformer import Platformer
 
 class TestPlatformer(unittest.TestCase):
     

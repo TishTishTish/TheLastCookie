@@ -11,14 +11,14 @@
    eJxjYBgFgwlMHGgH0BgMd/+RA+oH2gGDDNQOtANGwaAFdXS0azRfjoJRMPRBKRXNwlU31ROQRwbdQNxDHedQBXQNtAOIAKNtgpEJAOYYByg=
   </data>
  </layer>
- <layer id="3" name="ladders" width="36" height="26">
-  <data encoding="base64" compression="zlib">
-   eJzt1aEBACAMxMAOxRDsPxEKU/ECU8TdBHGpAq41HdDs6YBGT/ZbD/DODzI9mZ5MD8kBWhsDgQ==
-  </data>
- </layer>
  <layer id="4" name="goal" width="36" height="26">
   <data encoding="base64" compression="zlib">
    eJztzqENACAQBMFvE0kFlEO7gENjLiQzyfqt4hjpgUvbzfQEAMDHenoAeLIAl8UBwQ==
+  </data>
+ </layer>
+ <layer id="3" name="ladders" width="36" height="26">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUwIDJQDsADXgMtAPQwKh78IPB5p5RMPzAaBmFH1DTPdQIa2q6hxpmjbqH9mZQ06xR99APDDb3jHQAAKOwBfU=
   </data>
  </layer>
  <objectgroup id="5" name="cookies">
@@ -168,11 +168,6 @@
    </properties>
   </object>
   <object id="31" gid="183" x="384.099" y="405.716" width="10" height="10">
-   <properties>
-    <property name="point_value" type="int" value="5"/>
-   </properties>
-  </object>
-  <object id="32" gid="183" x="453.5" y="389.219" width="10" height="10">
    <properties>
     <property name="point_value" type="int" value="5"/>
    </properties>
