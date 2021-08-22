@@ -6,6 +6,12 @@ The Last Cookie is our take on the classic WhoDunnit game. The user plays the ro
 
 The main file is text-based but entering the different 'rooms' in the game will open up their respective minigame which incorporates graphics. The completion of these minigames will result in a clue- when 5 are gathered and returned to the main detective 'Sherlock Scones', the game has been won.
 
+To play the game:
+
+- Download all files
+- Navigate to the folder
+- Run main_game.exe
+
 Here are the five minigames available to play:
 
 ###### The Maryland Maze :cookie: :mag:
