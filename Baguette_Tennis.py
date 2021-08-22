@@ -6,7 +6,7 @@
 # 4/ specular reflection or random angle of ball on return
 # 5/ spinning jammie dodger which spins in different direction on return
 # 6/ better collision detection
-# 7/ proper graphic end screen
+# 7/ sort out speed being different on different computers!
 
 
 
@@ -190,11 +190,15 @@ while True:
     if human_wins:
         window.bgcolor("black") # background colour
         window.bgpic("end_win_screen.gif")
+        time.sleep(3)
+        window.bye()             
+    
         
     elif computer_wins:
         window.bgcolor("black") # background colour
         window.bgpic("end_lose_screen.gif")
+        time.sleep(3)
+        window.bye()
       
 
-    
         
