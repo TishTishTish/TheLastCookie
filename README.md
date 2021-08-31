@@ -11,3 +11,5 @@ See below screenshots of the game so far.
 **Title screen and Credits screen**
 ![alt-text](https://github.com/TishTishTish/TheLastCookie/blob/24fc41aa1122c1b2ebb4c38e70499ecee6bd9c72/Title%20Screen.gif)
 
+Final version is 'Connect 4 Game' 
+Read commit for more details
